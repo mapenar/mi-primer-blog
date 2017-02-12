@@ -1,22 +1,13 @@
-<html>
-	<head>
-		<title>May blog</title>
-	</head>
-	<body>
-		<div>
-			<h1><a href="">Capibara</a></h1>
+{% extends 'blog/base.html' %}
+{% block content %}
+	{% for post in posts %}
+		<div class="post">
+			 <div class="date">
+			   published: {{ post.published_date }}
+			 </div>
+			<h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+			<p>{{ post.text|linebreaks }}</p>
 		</div>
-		{% for post in posts %}
-			<div>
-				<p>published: {{ post.published_date }}</p>
-        		<h1><a href="">{{ post.title }}</a></h1>
-        		<p>{{ post.text|linebreaks }}</p>
-			</div>
-		{% endfor %}
-		<div>
-			<p>Publicado: 14.06.2014, 12:14</p>
-			<h2><a href="">Hydrochoerus hydrochaeris</a></h2>
-			<p>Tiene un cuerpo pesado en forma de barril y una cabeza pequeña, con un pelaje pardo rojizo en la parte superior del cuerpo que se vuelve pardo amarillo en la parte inferior. Pueden crecer hasta 1,30 m de largo y llegar a pesar 65 kg. Presenta pies ligeramente palmeados, prácticamente carece de cola y tiene 20 dientes. Sus patas posteriores son algo más largas que las anteriores, y los hocicos son romos, con los ojos, narinas y orejas en la parte superior de la cabeza. Las hembras son un poco más pesadas que los machos.</p>
-		</div>
-	</body>
-</html>
+	{% endfor %}
+{% endblock %}
+		            
